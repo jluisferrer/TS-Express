@@ -9,25 +9,40 @@ export const getRoles = (req: Request,res: Response) => {
 }
 
 export const postRoles = (req: Request,res: Response) => {
+    
+    const {name, email} = req.body;
+    
+    //recuperar la info a traves del body
+    
+    console.log(name, email);
+
     res.status(201).json({
         succes:true,
-        message : "Roles sent successfuly"
+        message : "Role created"
     
     })
 }
 
 export const putRoles = (req: Request,res: Response) => {
+    //recuperar parametros de la ruta
+    req.params.id
+    console.log(req.params.id)
+    
     res.status(200).json({
         succes:true,
-        message : "Roles put successfuly"
+        message : "Role updated"
     
     })
 }
 
 export const deleteRoles = (req: Request,res: Response) => {
+    
+    req.params.id
+    console.log(req.params.id)
+
     res.status(200).json({
         succes:true,
-        message : "Roles delete successfuly"
+        message : "Role delete successfuly"
     
     })
 }
