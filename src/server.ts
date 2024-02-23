@@ -1,5 +1,6 @@
 import express from "express"; //Importamos libreria express
 import dotenv from "dotenv";
+import { getRoles } from "../controllers/roleController";
 
 dotenv.config();
 
@@ -14,6 +15,9 @@ app.get('/healthy', (req , res) => {            /// Get recibe la url /healthy
     
     })
 })
+
+//roles routes
+app.get('/roles', getRoles)
 
 app.listen(PORT, () => {     //llamamos al metodo en el puerto 4000 
     console.log(`Server is running on port: ${PORT}`);
