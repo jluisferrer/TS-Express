@@ -1,6 +1,7 @@
 import express from "express"; //Importamos libreria express
 import dotenv from "dotenv";
-import { getRoles } from "../controllers/roleController";
+import { getRoles, postRoles, putRoles, deleteRoles,} from "../controllers/roleController";
+import { getUser, postUser, putUser, deleteUser,} from "../controllers/userController";
 
 dotenv.config();
 
@@ -18,6 +19,15 @@ app.get('/healthy', (req , res) => {            /// Get recibe la url /healthy
 
 //roles routes
 app.get('/roles', getRoles)
+app.post("/roles", postRoles)
+app.put ("/roles", putRoles)
+app.delete("/roles", deleteRoles)
+
+//user routes
+app.get('/user', getUser)
+app.post("/user", postUser)
+app.put ("/user", putUser)
+app.delete("/user", deleteUser)
 
 app.listen(PORT, () => {     //llamamos al metodo en el puerto 4000 
     console.log(`Server is running on port: ${PORT}`);
