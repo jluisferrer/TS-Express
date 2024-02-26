@@ -1,36 +1,25 @@
-import express from "express"; //Importamos libreria express
-import dotenv from "dotenv";
-import { getRoles, postRoles, putRoles, deleteRoles,} from "../controllers/roleController";
-import { getUser, postUser, putUser, deleteUser,} from "../controllers/userController";
+import 'dotenv/config' // o import: 'doten/config'
+import { app } from "./app";
+import { AppDataSource } from './database/db';
 
-dotenv.config();
 
-const app = express(); // Creamos una constante con la metodo express
+const PORT = process.env.PORT || 4001;
 
-app.use(express.json());
 
-const PORT = process.env.PORT || 4001; // 
+const startServer = () => {
+    AppDataSource.initialize()
+        .then(() => {
+            console.log('Database connected');
 
-app.get('/healthy', (req , res) => {            /// Get recibe la url /healthy          
-    res.status(200).json({
-        succes:true,
-        message : "Server is healthy"
-    
-    })
-})
+            app.listen(PORT, () => {     //llamamos al metodo en el puerto 4000 para que escuche, como un boton de encendido para el servidor
+                console.log(`Server is running on port: ${PORT}`);
+            })
+        })
 
-//roles routes
-app.get('/roles', getRoles)
-app.post("/roles", postRoles)
-app.put ("/roles/:id", putRoles)
-app.delete("/roles/:id", deleteRoles)
+        .catch(error => {
+            console.log(error);
+        })
 
-//user routes
-app.get('/user', getUser)
-app.post("/user", postUser)
-app.put ("/user/:id", putUser)
-app.delete("/user/:id", deleteUser)
+}
 
-app.listen(PORT, () => {     //llamamos al metodo en el puerto 4000 
-    console.log(`Server is running on port: ${PORT}`);
-})  
+startServer();
