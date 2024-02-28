@@ -4,6 +4,7 @@ import express from "express"; //Importamos libreria express
 
 import { getRoles, postRoles, putRoles, deleteRoles, } from "./controllers/roleController";
 import { getUser, postUser, putUser, deleteUser, } from "./controllers/userController";
+import { register } from "./controllers/authController";
 
 
 
@@ -33,3 +34,6 @@ app.get('/user', getUser)
 app.post("/user", postUser)
 app.put("/user/:id", putUser)
 app.delete("/user/:id", deleteUser)
+
+//AUTH roles
+app.post('/api/register', register)

@@ -25,7 +25,7 @@ export class User extends BaseEntity {
     isActive!: boolean
 
 
-    @ManyToOne(() => Role, (role) => role.users)
+    @ManyToOne(() => Role, (role) => role.user)
     @JoinColumn({ name: 'role_id' }) // cargo personalizado en la bd
     role!: Role;
 }

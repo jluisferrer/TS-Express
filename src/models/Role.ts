@@ -10,5 +10,5 @@ export class Role extends BaseEntity {
     name!: string
 
     @OneToMany(() => User, (user) => user.role)
-    users!: User[]
+    user!: User[]
 }
